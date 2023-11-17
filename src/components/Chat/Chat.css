@@ -1,0 +1,11 @@
+.send {
+    display: flex;
+    background-color: var(--light-green);
+    width: max-content;
+}
+
+.received {
+    display: flex;
+    justify-content: flex-start;
+    background-color: white;
+}
