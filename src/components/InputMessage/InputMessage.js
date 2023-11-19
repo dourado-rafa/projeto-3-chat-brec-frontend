@@ -21,7 +21,7 @@ export default function InputMessage(props) {
     return (
         <footer>
             <form className="form-input" onSubmit={sendMessage}>
-                <textarea className="autoresize input-message" name="message" placeholder="Menssagem" onChange={(e) => setMessage(e.target.value)} value={message} onKeyUp={(e) => {if (e.key === "Enter") sendMessage(e)}}/>
+                <textarea className="autoresize input-message" name="message" placeholder="Digite uma mensagem..." onChange={(e) => setMessage(e.target.value)} value={message} onKeyUp={(e) => {if (e.key === "Enter") sendMessage(e)}}/>
                 <button className="interactive btn-send" type="submit"><Icon name="send" color="white" /></button>
             </form>
         </footer>

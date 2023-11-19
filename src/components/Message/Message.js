@@ -1,9 +1,12 @@
 export default function Message(props) {
     return (
         <div className={props.type}>
-            <p>
-                {props.user}: {props.msg} às {props.time}
-            </p>
+            <div className={props.msgType}>
+                <p className="user">{props.user}</p>
+                <p className="message">{props.msg}</p>
+                <p className="time">{props.time}</p>
+                
+            </div>
         </div>
     );
 }
