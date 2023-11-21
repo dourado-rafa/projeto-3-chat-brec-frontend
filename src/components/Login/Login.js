@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 import "./Login.css"
 
 export default function Login() {
-    const [urlUser, setUrlUser] = useState("");
+    const [urlUser, setUrlUser] = useState("http://localhost:8000/api/token/");
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [userExists, setUserExists] = useState(false);
     const [currentScreen, setCurrentScreen] = useState("Login");
     const [postOk, setPostOk] = useState(true);
     const [hasToken, setHasToken] = useState(false);
+    const navigate = useNavigate();
 
 
     function SignUP() {
@@ -22,13 +23,14 @@ export default function Login() {
 
     const login = (event) => {
         event.preventDefault();
+        console.log('currentScreen');
+        console.log(currentScreen);
 
         if(currentScreen==='Login'){
             setUrlUser("http://localhost:8000/api/token/");
             setHasToken(true);
         } else {
             setUrlUser("http://localhost:8000/api/users/");
-            setUserExists(true);
         }
 
         const userInfo = {
@@ -37,16 +39,20 @@ export default function Login() {
             "password": password
           };
         
+        console.log('Url user')
+        console.log(urlUser);
+
         axios
             .post(urlUser, userInfo)
             .then((response) => {
                 setPostOk(true); 
-                setUserExists(true);
-                if(hasToken){
+                if(currentScreen==="Login"){
                     const token = response.data.token;
                     localStorage.setItem('token', true);
                     console.log(token);
-                }}
+                    navigate('/chat');
+                }
+                }
                 )
             .catch((error) => setPostOk(false));
         };
