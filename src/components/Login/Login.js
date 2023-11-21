@@ -13,6 +13,7 @@ export default function Login() {
     const [postOk, setPostOk] = useState(true);
     const [hasToken, setHasToken] = useState(false);
 
+
     function SignUP() {
         if (!postOk) {
           return <p>Você ainda não está cadastrado!</p>;
@@ -21,7 +22,8 @@ export default function Login() {
 
     const login = (event) => {
         event.preventDefault();
-        if(userExists){
+
+        if(currentScreen==='Login'){
             setUrlUser("http://localhost:8000/api/token/");
             setHasToken(true);
         } else {
@@ -42,6 +44,7 @@ export default function Login() {
                 setUserExists(true);
                 if(hasToken){
                     const token = response.data.token;
+                    localStorage.setItem('token', true);
                     console.log(token);
                 }}
                 )
