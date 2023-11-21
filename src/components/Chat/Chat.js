@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 import { chatSocket, username } from "../../settings";
 
 import Message from '../Message/Message';
@@ -30,15 +30,18 @@ export default function Chat(props) {
         chatSocket.onmessage = function (e) {
             const data = JSON.parse(e.data);
             messages.push(data);
-            setMessages([...messages]);
+            // setMessages([...messages]);
+            axios.get('http://127.0.0.1:8000/api/msgs/').then((response) => {
+                setMessages(response.data)
+            }).catch((response) => console.log(404))
         };
     }, [messages])
 
     function renderMessages() {
         return (messages.map(m => 
             (username === m.username) ? 
-            (<Message type='sent' msgType='box-sent' user={m.username} msg={m.message} time={formatTime(m.date)} />) : 
-            (<Message type='box-received' user={m.username} msg={m.message} time={formatTime(m.date)} />)))
+            (<Message type='sent' msgType='box-sent' user={m.username} msg={m.content} time={formatTime(m.date)} />) : 
+            (<Message type='box-received' user={m.username} msg={m.content} time={formatTime(m.date)} />)))
     }
 
     function Messages() {
