@@ -5,11 +5,12 @@ import Login from './components/Login/Login';
 import Index from "./pages/Index"
 
 function App() {
+
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Index />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/chat" element={<Index />} />
       </Routes>
     </Router>
   );

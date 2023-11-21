@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 import "./Login.css"
@@ -8,10 +9,10 @@ export default function Login() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [userExists, setUserExists] = useState(false);
     const [currentScreen, setCurrentScreen] = useState("Login");
     const [postOk, setPostOk] = useState(true);
     const [hasToken, setHasToken] = useState(false);
+    const navigate = useNavigate();
 
 
     function SignUP() {
@@ -28,7 +29,6 @@ export default function Login() {
             setHasToken(true);
         } else {
             setUrlUser("http://localhost:8000/api/users/");
-            setUserExists(true);
         }
 
         const userInfo = {
@@ -41,11 +41,11 @@ export default function Login() {
             .post(urlUser, userInfo)
             .then((response) => {
                 setPostOk(true); 
-                setUserExists(true);
                 if(hasToken){
                     const token = response.data.token;
                     localStorage.setItem('token', true);
                     console.log(token);
+                    navigate('/chat');
                 }}
                 )
             .catch((error) => setPostOk(false));
