@@ -5,7 +5,7 @@ import axios from "axios";
 import "./Login.css"
 
 export default function Login() {
-    const [urlUser, setUrlUser] = useState("");
+    const [urlUser, setUrlUser] = useState("http://localhost:8000/api/token/");
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -23,6 +23,8 @@ export default function Login() {
 
     const login = (event) => {
         event.preventDefault();
+        console.log('currentScreen');
+        console.log(currentScreen);
 
         if(currentScreen==='Login'){
             setUrlUser("http://localhost:8000/api/token/");
@@ -37,16 +39,20 @@ export default function Login() {
             "password": password
           };
         
+        console.log('Url user')
+        console.log(urlUser);
+
         axios
             .post(urlUser, userInfo)
             .then((response) => {
                 setPostOk(true); 
-                if(hasToken){
+                if(currentScreen==="Login"){
                     const token = response.data.token;
                     localStorage.setItem('token', true);
                     console.log(token);
                     navigate('/chat');
-                }}
+                }
+                }
                 )
             .catch((error) => setPostOk(false));
         };
