@@ -1,8 +1,132 @@
 .content {
-    width: 100vw;
-    height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--light-green);
+}
+
+.box-input {    
+    display: flex;
+    flex-direction: column;
+}
+
+.box-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 60vw;
+    height: 40vh;        
+    border: 1px;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 0 0 5px 1px var(--light-gray)
+}
+
+.box-signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 60vw;
+    height: 45vh;        
+    border: 1px;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 0 0 5px 1px var(--light-gray)
+}
+
+.box-form-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 20rem;
+    height: 13rem;
+}
+
+.box-form-signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 20rem;
+    height: 16rem;
+}
+
+.login-button {
+    width: 20rem;
+    height: 1.8rem;
+    border: 1px solid transparent;
+    background-color: var(--blue);
+    font-weight: bold;
+    color: white;
+    border-radius: 1rem;
+    transition: background-color .3s;
+}
+
+.login-button:hover {
+    cursor: pointer;
+    background-color: var(--dark-blue);
+}
+
+.signup-button {
+    width: 20rem;
+    height: 1.8rem;
+    border: 1px solid transparent;
+    background-color: var(--blue);
+    font-weight: bold;
+    color: white;
+    border-radius: 1rem;
+    transition: background-color .3s;
+}
+
+.signup-button:hover {
+    cursor: pointer;
+    background-color: var(--dark-blue);
+}
+
+.input-text {
+    margin-top: 0.5rem;
+    padding: 0.3rem .5rem;
+    border: 1px solid var(--light-gray);
+    border-radius: 5px;
+    outline: none;
+    transition: border-color .3s;
+}
+
+.input-text:focus {
+    border-color: black;
+}
+
+.redirect {
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--blue);
+    transition: color .3s;
+}
+
+.redirect:hover {
+    cursor: pointer;
+    color: var(--turquoise);
+}
+
+span {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+.sign-up-text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    color: red;
+}
+
+.signed-up-text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    color: var(--green);
 }
