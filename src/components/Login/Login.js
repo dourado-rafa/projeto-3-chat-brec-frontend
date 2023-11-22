@@ -5,7 +5,7 @@ import axios from "axios";
 import "./Login.css"
 
 export default function Login() {
-    const [urlUser, setUrlUser] = useState("http://localhost:8000/api/token/");
+    let urlUser = "http://localhost:8000/api/token/";
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -23,14 +23,13 @@ export default function Login() {
 
     const login = (event) => {
         event.preventDefault();
-        console.log('currentScreen');
-        console.log(currentScreen);
+        console.log('currentScreen', currentScreen);
 
-        if(currentScreen==='Login'){
-            setUrlUser("http://localhost:8000/api/token/");
+        if(currentScreen === 'Login'){
+            urlUser = "http://localhost:8000/api/token/";
             setHasToken(true);
         } else {
-            setUrlUser("http://localhost:8000/api/users/");
+            urlUser = "http://localhost:8000/api/users/";
         }
 
         const userInfo = {
@@ -39,22 +38,19 @@ export default function Login() {
             "password": password
           };
         
-        console.log('Url user')
-        console.log(urlUser);
+        console.log('Url user', urlUser);
 
         axios
             .post(urlUser, userInfo)
             .then((response) => {
                 setPostOk(true); 
-                if(currentScreen==="Login"){
+                if (currentScreen === "Login") {
                     const token = response.data.token;
                     localStorage.setItem('token', true);
                     console.log(token);
                     navigate('/chat');
                 }
-                }
-                )
-            .catch((error) => setPostOk(false));
+            }).catch((error) => setPostOk(false));
         };
 
     return (
@@ -99,7 +95,7 @@ export default function Login() {
                             <label>Email</label>
                         </div>
                         <div className="col-md-9">
-                            <input type="password" value={email} className="form-control" onChange={(event) => setEmail(event.target.value)} />
+                            <input type="text" value={email} className="form-control" onChange={(event) => setEmail(event.target.value)} />
                         </div>
                     </div>
                     <div className="form-group row">
@@ -111,7 +107,8 @@ export default function Login() {
                         </div>
                     </div>
                     <button onClick={login}>Cadastrar</button>
-                </form><button onClick={() => {setCurrentScreen("Login")}}>Fazer login</button></>  
+                </form>
+                <button onClick={() => {setCurrentScreen("Login")}}>Fazer login</button></>  
                 )}
         </div>
     )
