@@ -54,9 +54,7 @@ export default function Login() {
                     console.log(token);
                     navigate("/chat");
                 } else {
-                    console.log("cadastrado com sucesso")
                     setSignedUp(true);
-                    setCurrentScreen("Cadastro");
                 }
             }).catch((error) => setPostOk(false));
     };
