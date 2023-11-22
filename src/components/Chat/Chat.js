@@ -11,51 +11,35 @@ export default function Chat(props) {
     const [messages, setMessages] = useState([]);
 
     function formatTime(timeStamp) {
-        var date = new Date(timeStamp * 1000);
-        var hours = date.getHours();
-        var minutes = date.getMinutes();
+        let date = new Date(timeStamp * 1000);
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
 
-        if (hours < 10) {
-            hours = "0" + date.getHours();
-        }
-
-        if (minutes < 10) {
-            minutes = "0" + date.getMinutes();
-        }
-
+        if (hours < 10) hours = "0" + date.getHours();
+        if (minutes < 10) minutes = "0" + date.getMinutes();
+        
         return hours + ":" + minutes;
     }
 
     useEffect(() => {
+        chatSocket.onmessage = function (e) {
+            axios.get('http://127.0.0.1:8000/api/msgs/').then((response) => {
+                setMessages(response.data)
+            }).catch((response) => console.log(404))
+        };
+
         axios.get('http://127.0.0.1:8000/api/msgs/').then((response) => {
         setMessages(response.data)
         }).catch((response) => console.log(404))
     }, [])
 
-    useEffect(() => {
-        chatSocket.onmessage = function (e) {
-            const data = JSON.parse(e.data);
-            messages.push(data);
-            // setMessages([...messages]);
-            axios.get('http://127.0.0.1:8000/api/msgs/').then((response) => {
-                setMessages(response.data)
-            }).catch((response) => console.log(404))
-        };
-    }, [messages])
-
-    function renderMessages() {
-        return (messages.map(m => 
-            (username === m.username) ? 
-            (<Message type='sent' id={m.id} msgType='box-sent' user={m.username} msg={m.content} time={formatTime(m.date)} />) : 
-            (<Message type='box-received' id={m.id} user={m.username} msg={m.content} time={formatTime(m.date)} />)))
-    }
-
-    function Messages() {
-        return <>{renderMessages()}</>
-    }
-
     return (
-        <Messages />
+        <section>
+            {messages.map((msg) => { 
+                let origin = (username === msg.username) ? 'sent' : 'received'
+                return <Message origin={origin} key={`msg__${msg.id}`} id={msg.id} user={msg.username} msg={msg.content} time={formatTime(msg.date)} />
+            })}
+        </section>
     );
 }
 

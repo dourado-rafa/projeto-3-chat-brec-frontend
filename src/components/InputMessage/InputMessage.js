@@ -13,7 +13,7 @@ export default function InputMessage(props) {
     function sendMessage(e) {
         e.preventDefault()
         if (chatSocket.readyState === chatSocket.OPEN) {
-            chatSocket.send(JSON.stringify({ type:"message", message: message, username: username }));
+            chatSocket.send(JSON.stringify({ type:"send", message: message, username: username }));
             setMessage('')
         }
     }

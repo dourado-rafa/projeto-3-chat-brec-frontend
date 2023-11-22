@@ -7,7 +7,7 @@ export default function Icon(props) {
         width: 'min-content',
         height: 'min-content',
         textShadow: (props.shadow ? '2px 2px rgba(0, 0, 0, 0.8)' : ''),
-        fontSize: props.size,
+        fontSize: `${props.size}rem`,
     }
     const style = {...defaultStyle, ...props.style}
 
