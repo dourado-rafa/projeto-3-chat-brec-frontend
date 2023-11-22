@@ -27,6 +27,12 @@ export default function Chat(props) {
     }
 
     useEffect(() => {
+        axios.get('http://127.0.0.1:8000/api/msgs/').then((response) => {
+        setMessages(response.data)
+        }).catch((response) => console.log(404))
+    }, [])
+
+    useEffect(() => {
         chatSocket.onmessage = function (e) {
             const data = JSON.parse(e.data);
             messages.push(data);
