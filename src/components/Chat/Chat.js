@@ -46,8 +46,8 @@ export default function Chat(props) {
     function renderMessages() {
         return (messages.map(m => 
             (username === m.username) ? 
-            (<Message type='sent' msgType='box-sent' user={m.username} msg={m.content} time={formatTime(m.date)} />) : 
-            (<Message type='box-received' user={m.username} msg={m.content} time={formatTime(m.date)} />)))
+            (<Message type='sent' id={m.id} msgType='box-sent' user={m.username} msg={m.content} time={formatTime(m.date)} />) : 
+            (<Message type='box-received' id={m.id} user={m.username} msg={m.content} time={formatTime(m.date)} />)))
     }
 
     function Messages() {
