@@ -58,3 +58,6 @@
     flex-direction: row;
     justify-content: space-between;
 }
+.editing {
+    background-color: var(--turquoise);
+}

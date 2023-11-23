@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
 
 import Header from "../components/Header/Header"
@@ -9,18 +9,18 @@ import "./pages.css"
 
 export default function Index(props) {
     const navigate = useNavigate()
+    const [editId, setEditId] = useState(0)
 
     useEffect(() => {
         let haveToken = localStorage.getItem('token') === 'true'
         if (!haveToken) {
-            console.log('Você não está logado!');
             navigate('/');
         }
     }, [])
     
     return (<div className="view">
         <Header />
-        <Chat />
-        <InputMessage />
+        <Chat setEditId={setEditId} editId={editId}/>
+        <InputMessage editId={editId} />
     </div>);
 }
