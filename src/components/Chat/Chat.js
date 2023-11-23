@@ -1,5 +1,5 @@
 import axios from "axios";
-import { chatSocket, username } from "../../settings";
+import { chatSocket } from "../../settings";
 
 import Message from '../Message/Message';
 import React, { useEffect, useState } from "react";
@@ -9,6 +9,14 @@ import "./Chat.css"
 
 export default function Chat(props) {
     const [messages, setMessages] = useState([]);
+    const [ username, setUsername] = useState('');
+
+    useEffect(() => {
+        axios
+            .post('http://127.0.0.1:8000/api/get-user/', {"token": sessionStorage.getItem("token")})
+            .then((response) => {setUsername(response.data.username)})
+            .catch((error) => console.log(404))
+    }, [])
 
     function formatTime(timeStamp) {
         let date = new Date(timeStamp * 1000);

@@ -11,8 +11,8 @@ export default function Index(props) {
     const navigate = useNavigate()
 
     useEffect(() => {
-        let haveToken = localStorage.getItem('token') === 'true'
-        if (!haveToken) {
+        let dontHaveToken = sessionStorage.getItem('token') === 'false'
+        if (dontHaveToken) {
             console.log('Você não está logado!');
             navigate('/');
         }
