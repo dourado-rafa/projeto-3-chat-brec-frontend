@@ -142,6 +142,7 @@ export default function Login() {
                         <input
                             className="signup-button"
                             type="submit"
+                            onChange={(event) => setSignedUp(true)}
                             value="Cadastrar"
                         />
                     </form>
