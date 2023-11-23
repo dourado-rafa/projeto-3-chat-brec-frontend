@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { chatSocket, BackendLink } from "../../settings";
+
+import { chatSocket } from "../../settings";
 import Icon from "../Icon";
 
 import "./Message.css"
@@ -18,10 +18,10 @@ export default function Message(props) {
             <div className={`box-${origin} ${(editing) ? 'editing' : ' '}`}>
                 <div className="message-header">
                     <p className="user">{message.username}</p>
-                    <div className="message-buttons">
+                    {(origin === 'sent') && <div className="message-buttons">
                         <button onClick={(e) => {deleteMessage(e, message.id)}}><Icon name='delete' size={1}/></button>
                         <button onClick={(e) => {setEditId(message.id)}}><Icon name='edit' size={1}/></button>
-                    </div>
+                    </div>}
                 </div>
                 <p className="message">{message.content}</p>
                 <p className="time">{formatTime(message.date)}</p>
