@@ -7,7 +7,6 @@ import "./Message.css"
 export default function Message(props) {
     const { setEditId, editing } = props
     const { origin, message} = props
-    console.log(message)
 
     function deleteMessage(e, id) {
         e.preventDefault()

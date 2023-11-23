@@ -28,7 +28,6 @@ export default function Login() {
 
     const login = (event) => {
         event.preventDefault();
-        console.log("currentScreen", currentScreen);
 
         if (currentScreen === "Login") {
             urlUser = "http://localhost:8000/api/token/";
@@ -42,7 +41,6 @@ export default function Login() {
             "password": password
         };
 
-        console.log("Url user", urlUser);
 
         axios
             .post(urlUser, userInfo)
