@@ -7,6 +7,7 @@ import "./Message.css"
 export default function Message(props) {
     const { setEditId, editing } = props
     const { origin, message} = props
+    console.log(message)
 
     function deleteMessage(e, id) {
         e.preventDefault()
@@ -17,7 +18,7 @@ export default function Message(props) {
         <div className={origin}>
             <div className={`box-${origin} ${(editing) ? 'editing' : ' '}`}>
                 <div className="message-header">
-                    <p className="user">{message.username}</p>
+                    <p className="user">{message.user.username}</p>
                     {(origin === 'sent') && <div className="message-buttons">
                         <button onClick={(e) => {deleteMessage(e, message.id)}}><Icon name='delete' size={1}/></button>
                         <button onClick={(e) => {setEditId(message.id)}}><Icon name='edit' size={1}/></button>

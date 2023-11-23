@@ -12,10 +12,9 @@ export default function Chat(props) {
     const [ username, setUsername] = useState('');
 
     useEffect(() => {
-        axios
-            .post(`${BackendLink}/api/get-user/`, {"token": sessionStorage.getItem("token")})
-            .then((response) => {setUsername(response.data.username)})
-            .catch(() => console.log(404))
+        axios.post(`${BackendLink}/api/get-user/`, {"token": sessionStorage.getItem("token")}).then((response) => {
+            setUsername(response.data.username)
+        }).catch(() => console.log(404))
     }, [])
 
     useEffect(() => {
@@ -34,7 +33,7 @@ export default function Chat(props) {
     return (
         <section>
             {messages.map((msg) => { 
-                let origin = (username === msg.username) ? 'sent' : 'received'
+                let origin = (username === msg.user.username) ? 'sent' : 'received'
                 return <Message key={`msg__${msg.id}`} setEditId={setEditId} origin={origin} message={msg} editing={editId === msg.id} />
             })}
         </section>
