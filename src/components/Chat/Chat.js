@@ -13,7 +13,7 @@ export default function Chat(props) {
 
     useEffect(() => {
         axios
-            .post(`${BackendLink}/get-user/`, {"token": sessionStorage.getItem("token")})
+            .post(`${BackendLink}/api/get-user/`, {"token": sessionStorage.getItem("token")})
             .then((response) => {setUsername(response.data.username)})
             .catch(() => console.log(404))
     }, [])
