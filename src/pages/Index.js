@@ -12,10 +12,8 @@ export default function Index(props) {
     const [editId, setEditId] = useState(0)
 
     useEffect(() => {
-        let haveToken = localStorage.getItem('token') === 'true'
-        if (!haveToken) {
-            navigate('/');
-        }
+        let dontHaveToken = sessionStorage.getItem('token') === 'false'
+        if (dontHaveToken)  navigate('/');
     }, [])
     
     return (<div className="view">

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { chatSocket, BackendLink, username } from "../../settings";
+import { chatSocket, BackendLink } from "../../settings";
 import Icon from "../Icon";
 
 import "./Message.css"

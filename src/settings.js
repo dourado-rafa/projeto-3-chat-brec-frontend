@@ -5,6 +5,5 @@ const chatSocket = new WebSocket(`ws://${Backend}/`);
 chatSocket.onopen =  (e) => console.log("The connection was setup successfully !");
 chatSocket.onclose = (e) => console.log("Something unexpected happened !");
 
-const username = "Admin"
 
-export { chatSocket, BackendLink, username };
+export { chatSocket, BackendLink };

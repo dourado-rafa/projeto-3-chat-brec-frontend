@@ -50,13 +50,12 @@ export default function Login() {
                 setPostOk(true);
                 if (currentScreen === "Login") {
                     const token = response.data.token;
-                    localStorage.setItem("token", true);
-                    console.log(token);
+                    sessionStorage.setItem("token", token);
                     navigate("/chat");
                 } else {
                     setSignedUp(true);
                 }
-            }).catch((error) => setPostOk(false));
+            }).catch((error) => {sessionStorage.setItem("token", false); setPostOk(false)});
     };
 
     return (
@@ -143,6 +142,7 @@ export default function Login() {
                         <input
                             className="signup-button"
                             type="submit"
+                            onChange={(event) => setSignedUp(true)}
                             value="Cadastrar"
                         />
                     </form>
