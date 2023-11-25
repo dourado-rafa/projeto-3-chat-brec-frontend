@@ -31,8 +31,8 @@ export default function Chat(props) {
     }, [])
 
     return (
-        <section>
-            {messages.map((msg) => { 
+        <section className="sec-view">
+            {messages.toReversed().map((msg) => {
                 let origin = (username === msg.user.username) ? 'sent' : 'received'
                 return <Message key={`msg__${msg.id}`} setEditId={setEditId} origin={origin} message={msg} editing={editId === msg.id} />
             })}

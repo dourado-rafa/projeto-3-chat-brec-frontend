@@ -4,12 +4,20 @@
   --dark-turquoise: #0d7f72;
   --green: #25d366;
   --light-green: #dcf8c6;
-  --pink: #ece5dd;
+  --edit-green: #a2d67b;
+  --pink: #E1CBD7;
+  --lilac: #C38EB4;
   --dark: #333333;
   --gray: #808080;
   --light-gray: #aaaaaa;
+  --light-blue: #86A8CF;
+  --edit-blue: #627d9d;
+  --cyan: #26425A;
   --blue: #09f;
-  --dark-blue: #0086df;
+  --dark-blue: #0D1F48;
+  --dark-blue2: #0b193b;
+  --darker-blue: #0D1F2F;
+  --blue-gray: #0f1d3e;;
 }
 
 body {

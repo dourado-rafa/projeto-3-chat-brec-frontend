@@ -4,7 +4,7 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-color: var(--light-green);
+    background-color: var(--light-blue);
 }
 
 .box-input {    
@@ -22,7 +22,7 @@
     border: 1px;
     padding: 2rem;
     background-color: white;
-    box-shadow: 0 0 5px 1px var(--light-gray)
+    box-shadow: 0 0 5px 1px var(--edit-blue);
 }
 
 .box-signup {
@@ -35,7 +35,7 @@
     border: 1px;
     padding: 2rem;
     background-color: white;
-    box-shadow: 0 0 5px 1px var(--light-gray)
+    box-shadow: 0 0 5px 1px var(--edit-blue);
 }
 
 .box-form-login {
