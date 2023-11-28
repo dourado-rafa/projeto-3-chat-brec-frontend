@@ -1,5 +1,5 @@
-const Backend = 'localhost:8000'
-const BackendLink = `http://${Backend}`
+const Backend = 'chatbrec-e9oq.onrender.com'
+const BackendLink = `https://${Backend}`
 
 const chatSocket = new WebSocket(`ws://${Backend}/`);
 chatSocket.onopen =  (e) => console.log("The connection was setup successfully !");
