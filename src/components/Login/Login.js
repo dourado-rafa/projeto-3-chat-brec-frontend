@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { BackendLink } from "../../settings";
 
 import "./Login.css"
 
 export default function Login() {
-    let urlUser = "http://localhost:8000/api/token/";
+    let urlUser = `${BackendLink}/api/token/`;
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -30,9 +31,9 @@ export default function Login() {
         event.preventDefault();
 
         if (currentScreen === "Login") {
-            urlUser = "http://localhost:8000/api/token/";
+            urlUser = `${BackendLink}/api/token/`;
         } else {
-            urlUser = "http://localhost:8000/api/users/";
+            urlUser = `${BackendLink}/api/users/`;
         }
 
         const userInfo = {
