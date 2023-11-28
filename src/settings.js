@@ -1,4 +1,4 @@
-const Backend = 'localhost:3000'
+const Backend = 'localhost:8000'
 const BackendLink = `http://${Backend}`
 
 const chatSocket = new WebSocket(`ws://${Backend}/`);
