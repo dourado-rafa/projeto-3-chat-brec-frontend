@@ -18,17 +18,38 @@ export default function Chat(props) {
     }, [])
 
     useEffect(() => {
+        axios.get(`${BackendLink}/api/msgs/`).then((response) => {
+            setMessages(response.data)
+        }).catch(() => console.log(404))
+    }, [])
+
+    useEffect(() => {
         chatSocket.onmessage = function (e) {
+            let message = JSON.parse(e.data)
+            
+            if (message.type === 'sendMessage') {
+                messages.push(message)
+                setMessages([...messages])
+            
+            } else if (message.type === 'deleteMessage') {
+                setMessages(messages.filter((msg) => message.id !== msg.id))
+
+            } else if (message.type === 'updateMessage') {
+                for (let i = 0 ; i < messages.length ; i++) {
+                    if (messages[i].id === message.id) {
+                        messages[i] = message  
+                        setMessages([...messages])
+                        setEditId(0)
+                        break
+                    }
+                }
+            }
+
             axios.get(`${BackendLink}/api/msgs/`).then((response) => {
                 setMessages(response.data)
             }).catch(() => console.log(404))
-            setEditId(0)
         };
-
-        axios.get(`${BackendLink}/api/msgs/`).then((response) => {
-        setMessages(response.data)
-        }).catch(() => console.log(404))
-    }, [])
+    }, [messages])
 
     return (
         <section className="sec-view">
