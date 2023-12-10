@@ -40,9 +40,8 @@
 }
 
 .time {
-    position: absolute;
-    bottom: .3rem;
-    right: .3rem;
+    min-width: 8rem;
+    text-align: right;
 
     font-size: .75rem;
     color: var(--gray);

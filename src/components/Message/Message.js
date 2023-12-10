@@ -31,12 +31,27 @@ export default function Message(props) {
 }
 
 function formatTime(timeStamp) {
+    let weekDays = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
+    let now = new Date(Date.now()+1)
     let date = new Date(timeStamp * 1000);
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
 
-    if (hours < 10) hours = "0" + date.getHours();
-    if (minutes < 10) minutes = "0" + date.getMinutes();
-     
-    return hours + ":" + minutes;
+    let day = date.getDate()
+    if (day < 10) day = "0" + day;
+    let month = date.getMonth()
+    if (month < 10) month = "0" + month;
+    let hours = date.getHours();
+    if (hours < 10) hours = "0" + hours;
+    let minutes = date.getMinutes();
+    if (minutes < 10) minutes = "0" + minutes;
+
+    let lastWeek = new Date(now.getTime() - 7*24*60*60*1000)
+    console.log(lastWeek)
+    
+    if (date.getFullYear() === now.getFullYear() && date.getMonth() === now.getMonth() && date.getDate() === now.getDate()) {
+        return `Hoje, ${hours}:${minutes}`
+    } else if (date.getFullYear() === now.getFullYear() && date.getMonth() === now.getMonth() && lastWeek.getDate() < date.getDate()) {
+        return `${weekDays[date.getDay()]}, ${hours}:${minutes}`
+    } else {
+        return `${day}/${month}/${date.getFullYear()}, ${hours}:${minutes}`
+    }
 }
