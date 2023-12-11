@@ -1,4 +1,4 @@
-const Backend = 'chat-brec.onrender.com'
+const Backend = 'localhost:8000'
 const BackendLink = `http://${Backend}`
 
 const chatSocket = new WebSocket(`ws://${Backend}/`);
