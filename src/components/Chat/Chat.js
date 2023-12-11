@@ -45,9 +45,9 @@ export default function Chat(props) {
                 }
             }
 
-            axios.get(`${BackendLink}/api/msgs/`).then((response) => {
-                setMessages(response.data)
-            }).catch(() => console.log(404))
+            // axios.get(`${BackendLink}/api/msgs/`).then((response) => {
+            //     setMessages(response.data)
+            // }).catch(() => console.log(404))
         };
     }, [messages])
 
